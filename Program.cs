@@ -19,6 +19,18 @@ namespace GuessThatNumber
             //if you wanted to add more variables, you would add more numbered brackets (in ascending order) and more variable names outside of quotations.
 
             //STARTING POINT
+
+            //Set app variables
+            string appName = "Guess That Number";
+            string appVersion = "1.0.0";
+            string appAuthor = "Astral Plane 💫";
+
+            //Set console text color and print app info to console.
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("{0}: Version {1} by {2}", appName, appVersion, appAuthor);
+
+            //Rest text color
+            Console.ResetColor();
         }
     }
 }
