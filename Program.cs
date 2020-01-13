@@ -31,6 +31,46 @@ namespace GuessThatNumber
 
             //Rest text color
             Console.ResetColor();
+
+            //Ask user's name
+            Console.WriteLine("What's your name?");
+
+            //Store user's name in this variable
+            string input = Console.ReadLine();
+
+            //Greet user by name
+            Console.WriteLine("Thanks for joining us, {0}. Let's play a game! 🖥", input);
+
+            //Game Rules below
+
+            //Set correct number
+            int correctNumber = 7;
+
+            //Set user guess (which will be reassigned later)
+            int guess = 0;
+
+            //Ask user to guess
+            Console.WriteLine("Guess a number between 1 and 10 🧐");
+
+            //Set loop to continue asking user until the correct number is guessed
+            while(guess != correctNumber)
+            {
+                //Get user input
+                string inputGuess = Console.ReadLine();
+
+                //reassign user input to variable guess and convert from string to integer
+                guess = Int32.Parse(inputGuess);
+
+                //match guess to correct number
+                if(guess != correctNumber)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Sorry, {0}, that's the wrong number. Try again", input);
+                    Console.ResetColor();
+                }
+
+
+            }
         }
     }
 }
