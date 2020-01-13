@@ -58,6 +58,18 @@ namespace GuessThatNumber
                 //Get user input
                 string inputGuess = Console.ReadLine();
 
+                //Check to make sure user input is actually a number
+                if(!int.TryParse(inputGuess, out guess))
+                {
+                    //Send user an error message
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Please input a number");
+                    Console.ResetColor();
+
+                    //keep going
+                    continue;
+                }
+
                 //reassign user input to variable guess and convert from string to integer
                 guess = Int32.Parse(inputGuess);
 
@@ -71,6 +83,11 @@ namespace GuessThatNumber
 
 
             }
+
+            //Set output for correct guess
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Congratulations! 🍾 That is the correct number!");
+            Console.ResetColor();
         }
     }
 }
