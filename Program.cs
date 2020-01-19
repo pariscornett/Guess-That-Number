@@ -43,56 +43,73 @@ namespace GuessThatNumber
 
             //Game Rules below
 
-            //Set correct number
-            //int correctNumber = 7;
-
-            //Randomize "correct" number
-            Random random = new Random();
-
-            int correctNumber = random.Next(1, 10); 
-
-            //Set user guess (which will be reassigned later)
-            int guess = 0;
-
-            //Ask user to guess
-            Console.WriteLine("Guess a number between 1 and 10 🧐");
-
-            //Set loop to continue asking user until the correct number is guessed
-            while(guess != correctNumber)
+            //Set loop to allow continuous play
+            while (true)
             {
-                //Get user input
-                string inputGuess = Console.ReadLine();
 
-                //Check to make sure user input is actually a number
-                if(!int.TryParse(inputGuess, out guess))
+                //Randomize "correct" number
+                Random random = new Random();
+
+                int correctNumber = random.Next(1, 10);
+
+                //Set user guess (which will be reassigned later)
+                int guess = 0;
+
+                //Ask user to guess
+                Console.WriteLine("Guess a number between 1 and 10 🧐");
+
+                //Set loop to continue asking user until the correct number is guessed
+                while (guess != correctNumber)
                 {
-                    //Send user an error message
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Please input a number");
-                    Console.ResetColor();
+                    //Get user input
+                    string inputGuess = Console.ReadLine();
 
-                    //keep going
+                    //Check to make sure user input is actually a number
+                    if (!int.TryParse(inputGuess, out guess))
+                    {
+                        //Send user an error message
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Please input a number");
+                        Console.ResetColor();
+
+                        //keep going
+                        continue;
+                    }
+
+                    //reassign user input to variable guess and convert from string to integer
+                    guess = Int32.Parse(inputGuess);
+
+                    //match guess to correct number
+                    if (guess != correctNumber)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Sorry, {0}, that's the wrong number. Try again", input);
+                        Console.ResetColor();
+                    }
+
+
+                }
+
+                //Set output for correct guess
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("Congratulations! 🍾 That is the correct number!");
+                Console.ResetColor();
+
+                //Ask to play again
+                Console.WriteLine("Do you want to play again? [Y or N]");
+
+                //Get answer (even though we are reading only one character, we will use string instead of char since the chained methods return strings
+                string answer = Console.ReadLine().ToUpper();
+
+                if (answer == "Y")
+                {
                     continue;
                 }
-
-                //reassign user input to variable guess and convert from string to integer
-                guess = Int32.Parse(inputGuess);
-
-                //match guess to correct number
-                if(guess != correctNumber)
+                else if (answer == "N")
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Sorry, {0}, that's the wrong number. Try again", input);
-                    Console.ResetColor();
+                    return;
                 }
-
-
             }
-
-            //Set output for correct guess
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("Congratulations! 🍾 That is the correct number!");
-            Console.ResetColor();
         }
     }
 }
