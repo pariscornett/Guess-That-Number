@@ -44,7 +44,12 @@ namespace GuessThatNumber
             //Game Rules below
 
             //Set correct number
-            int correctNumber = 7;
+            //int correctNumber = 7;
+
+            //Randomize "correct" number
+            Random random = new Random();
+
+            int correctNumber = random.Next(1, 10); 
 
             //Set user guess (which will be reassigned later)
             int guess = 0;
