@@ -20,26 +20,9 @@ namespace GuessThatNumber
 
             //STARTING POINT
 
-            //Set app variables
-            string appName = "Guess That Number";
-            string appVersion = "1.0.0";
-            string appAuthor = "Astral Plane 💫";
+            GetAppInfo();
 
-            //Set console text color and print app info to console.
-            Console.ForegroundColor = ConsoleColor.DarkMagenta;
-            Console.WriteLine("{0}: Version {1} by {2}", appName, appVersion, appAuthor);
-
-            //Rest text color
-            Console.ResetColor();
-
-            //Ask user's name
-            Console.WriteLine("What's your name?");
-
-            //Store user's name in this variable
-            string input = Console.ReadLine();
-
-            //Greet user by name
-            Console.WriteLine("Thanks for joining us, {0}. Let's play a game! 🖥", input);
+            GreetUser();
 
             //Game Rules below
 
@@ -67,10 +50,8 @@ namespace GuessThatNumber
                     //Check to make sure user input is actually a number
                     if (!int.TryParse(inputGuess, out guess))
                     {
-                        //Send user an error message
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Please input a number");
-                        Console.ResetColor();
+                        //Print an error message
+                        PrintColorMessage(ConsoleColor.Red, "Please input an actual number");
 
                         //keep going
                         continue;
@@ -82,18 +63,16 @@ namespace GuessThatNumber
                     //match guess to correct number
                     if (guess != correctNumber)
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Sorry, {0}, that's the wrong number. Try again", input);
-                        Console.ResetColor();
+                       
+                        //Print an error message
+                        PrintColorMessage(ConsoleColor.Red, "Sorry, that's the wrong number. Try again");
                     }
 
 
                 }
 
-                //Set output for correct guess
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("Congratulations! 🍾 That is the correct number!");
-                Console.ResetColor();
+                //Send message for correct guess
+                PrintColorMessage(ConsoleColor.Cyan, "Congratulations! 🍾 That is the correct number!");
 
                 //Ask to play again
                 Console.WriteLine("Do you want to play again? [Y or N]");
@@ -109,7 +88,45 @@ namespace GuessThatNumber
                 {
                     return;
                 }
+                else
+                {
+                    return;
+                }
             }
+        }
+
+        static void GetAppInfo()
+        {
+            //Set app variables
+            string appName = "Guess That Number";
+            string appVersion = "1.0.0";
+            string appAuthor = "Astral Plane 💫";
+
+            //Set console text color and print app info to console.
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("{0}: Version {1} by {2}", appName, appVersion, appAuthor);
+
+            //Rest text color
+            Console.ResetColor();
+        }
+
+        static void GreetUser()
+        {
+            //Ask user's name
+            Console.WriteLine("What's your name?");
+
+            //Store user's name in this variable
+            string input = Console.ReadLine();
+
+            //Greet user by name
+            Console.WriteLine("Thanks for joining us, {0}. Let's play a game! 🖥", input);
+        }
+
+        static void PrintColorMessage(ConsoleColor color, string message )
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine(message);
+            Console.ResetColor();
         }
     }
 }
