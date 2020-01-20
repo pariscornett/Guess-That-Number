@@ -17,6 +17,9 @@ namespace GuessThatNumber
             //Line 16 works fine, but the better way to write this would be as follows:
             //Console.WriteLine("{0} is {1} years old 👩🏻‍💻", name, age);
             //if you wanted to add more variables, you would add more numbered brackets (in ascending order) and more variable names outside of quotations.
+            //EDIT 1/19/2020: According to Microsoft documentation, this string interpolation isn't actually correct. It seems like it should be written as follows:
+            //Console.WriteLine($"{name} is {age} years old");
+
 
             //STARTING POINT
 
@@ -104,10 +107,10 @@ namespace GuessThatNumber
 
             //Set console text color and print app info to console.
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
-            Console.WriteLine("{0}: Version {1} by {2}", appName, appVersion, appAuthor);
+            Console.WriteLine($"{appName}: Version {appVersion} by {appAuthor}");
 
             //Rest text color
-            Console.ResetColor();
+            Console.ResetColor();   
         }
 
         static void GreetUser()
@@ -119,7 +122,7 @@ namespace GuessThatNumber
             string input = Console.ReadLine();
 
             //Greet user by name
-            Console.WriteLine("Thanks for joining us, {0}. Let's play a game! 🖥", input);
+            Console.WriteLine($"Thanks for joining us, {input}. Let's play a game! 🖥");
         }
 
         static void PrintColorMessage(ConsoleColor color, string message )
